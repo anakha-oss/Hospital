@@ -1,0 +1,375 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuvexa - Healthcare Website</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #172b40;
+        }
+
+        /* Header */
+        header {
+            background: #102b46;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #36b5db;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 13px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #36b5db;
+        }
+
+        .appointment {
+            background: #21a5d0;
+            padding: 12px 20px;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 550px;
+            background:
+            linear-gradient(90deg,
+            rgba(9, 35, 58, 0.9),
+            rgba(9, 35, 58, 0.2)),
+            url("https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1600&q=85");
+
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 50px 8%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 550px;
+        }
+
+        .hero-content p {
+            color: #40c2e5;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 55px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: #36b5db;
+        }
+
+        .hero-content a {
+            display: inline-block;
+            background: #20a5d1;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about img {
+            width: 48%;
+            height: 330px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .small-title {
+            color: #20a5d1;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .about h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .about h2 span {
+            color: #20a5d1;
+        }
+
+        .about p {
+            color: #777;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .experience {
+            font-size: 35px;
+            color: #20a5d1;
+            font-weight: bold;
+        }
+
+        /* Services */
+        .services {
+            background: #f5f9fc;
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .services h2 span {
+            color: #20a5d1;
+        }
+
+        .service-intro {
+            color: #777;
+            margin-bottom: 40px;
+        }
+
+        .service-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+            transition: 0.3s;
+            text-align: left;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .service-card .number {
+            color: #20a5d1;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .service-card h3 {
+            margin: 18px 0;
+        }
+
+        .service-card p {
+            color: #777;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .service-card a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #20a5d1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Appointment */
+        .booking {
+            padding: 75px 20px;
+            text-align: center;
+            background: #102b46;
+            color: white;
+        }
+
+        .booking h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .booking p {
+            margin-bottom: 25px;
+        }
+
+        .booking a {
+            background: #20a5d1;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background: #091d30;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer span {
+            color: #36b5db;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .service-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+                flex-direction: column;
+            }
+
+            .about img {
+                width: 100%;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .service-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about h2,
+            .services h2 {
+                font-size: 28px;
+            }
+
+            header {
+                padding: 18px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">✚ MEDICARE</div>
+
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'login' %}">Login</a>
+        </nav>
+
+        <a href="{% url 'booking' %}" class="appointment">
+            Book Appointment
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p>WELCOME TO  MEDICARE CLINIC</p>
+
+            <h1>Your Trusted Path To <span>Recovery</span></h1>
+
+            <p>
+                Quality healthcare and professional medical
+                services for a healthier and happier life.
+            </p>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+
+        <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=900&q=85"
+             alt="Medical professionals">
+
+        <div class="about-content">
+
+            <div class="small-title">● ABOUT OUR CLINIC</div>
+
+            <h2>Trusted Multi-Specialty <span>Medical Clinic</span></h2>
+
+            <p>
+                We provide comprehensive healthcare solutions
+                through experienced medical professionals,
+                advanced facilities and patient-centered care.
+                Our commitment is to deliver quality diagnosis,
+                personalized treatment and compassionate support.
+            </p>
+
+            <div class="experience">10+</div>
+            <p>Years of Medical Experience</p>
+
+        </div>
+    </section>
+
+    
+    <!-- Appointment Section -->
+    <section class="booking" id="contact">
+
+        <h2>Take Care of Your Health</h2>
+
+        <p>
+            Schedule your appointment with our experienced doctors today.
+        </p>
+
+        <a href="{% url 'contact' %}">Contact Us →</a>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            © 2026 <span>MEDICARE</span> Medical Clinic.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
+{% endblock %}

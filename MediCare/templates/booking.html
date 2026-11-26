@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medicare - Book Appointment</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f5fa;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #087e8b;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #087e8b;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .row .form-group {
+            flex: 1;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #087e8b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #05636d;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #087e8b;
+            text-decoration: none;
+        }
+
+        @media(max-width: 600px) {
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            body {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Medicare</h1>
+    <p class="subtitle">Book Your Doctor Appointment</p>
+
+    <form method="POST" action="{% url 'booking' %}">
+
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Patient Name</label>
+            <input type="text" name="patient_name"
+                   placeholder="Enter patient name" required>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                <label>Age</label>
+                <input type="number" name="age"
+                       placeholder="Enter age" min="1" max="120" required>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <select name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" name="phone"
+                   placeholder="Enter phone number" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" name="email"
+                   placeholder="Enter email address">
+        </div>
+
+        <div class="form-group">
+            <label>Select Department</label>
+            <select name="department" required>
+                <option value="">Choose Department</option>
+                <option>Cardiology</option>
+                <option>Dermatology</option>
+                <option>Neurology</option>
+                <option>Orthopedics</option>
+                <option>General Medicine</option>
+                <option>Pediatrics</option>
+                <option>Gynecology</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Select Doctor</label>
+            <select name="doctor" required>
+                <option value="">Choose Doctor</option>
+                <option>Dr. Arun - Cardiologist</option>
+                <option>Dr. Anjali - Dermatologist</option>
+                <option>Dr. Rahul - Neurologist</option>
+                <option>Dr. Meera - General Physician</option>
+            </select>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group">
+                <label>Appointment Date</label>
+                <input type="date" name="appointment_date"
+                       min="{{ today }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Appointment Time</label>
+                <select name="appointment_time" required>
+                    <option value="">Select Time</option>
+                    <option>09:00 AM</option>
+                    <option>10:00 AM</option>
+                    <option>11:00 AM</option>
+                    <option>12:00 PM</option>
+                    <option>02:00 PM</option>
+                    <option>03:00 PM</option>
+                    <option>04:00 PM</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label>Reason for Appointment</label>
+            <textarea name="reason" rows="4"
+                placeholder="Describe your health concern"></textarea>
+        </div>
+
+        <button type="submit">Book Appointment</button>
+
+    </form>
+
+    <a href="{% url 'home' %}" class="back">Back to Home</a>
+
+</div>
+
+</body>
+</html>
